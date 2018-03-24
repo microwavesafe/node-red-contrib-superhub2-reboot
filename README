@@ -2,4 +2,4 @@ This will only work with node red, see https://nodered.org/ for details.
 
 You can install directly from github
 
-npm install --save https://github.com/microwavesafe/node-red-contrib-superhub2-reboot.git
+npm install https://github.com/microwavesafe/node-red-contrib-superhub2-reboot.git
