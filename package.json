@@ -1,0 +1,19 @@
+{
+  "name": "node-red-contrib-superhub2-reboot",
+  "version": "0.0.1",
+  "description": "When activated this will reboot a virgin media super hub 2",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "needle": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "microwavesafe",
+  "license": "MIT",
+  "node-red" : {
+    "nodes": {
+        "superhub2-reboot": "superhub2-reboot.js"
+    }
+  }
+}

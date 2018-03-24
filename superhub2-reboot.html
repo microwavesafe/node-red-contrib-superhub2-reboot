@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('superhub2-reboot',{
+        category: 'network-output',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            ipAddress: {value:"",required:true},
+            password: {value:"",required:true},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "alert.png",
+        label: function() {
+            return this.name||"superhub2-reboot";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="superhub2-reboot">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-ipAddress"><i class="icon-tag"></i> IP Address</label>
+        <input type="text" id="node-input-ipAddress">
+    </div>
+    <div class="form-row">
+        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <input type="password" id="node-input-password">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="superhub2-reboot">
+    <p>When this node receives the message payload of true or a number above 0, it will initiate a reboot of the Virgin Media (tm) SuperHub2 router.</p>
+    <p>If it receives a message payload of "test" it will run all functions, up to, but not including the actual reboot. This this will test that the IP address and password are correct.</p>
+    <p>After triggering, on success it will output a message with payload of true, otherwise it will output a message with payload of false.</p>
+</script>
