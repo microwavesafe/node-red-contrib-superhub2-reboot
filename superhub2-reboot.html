@@ -3,9 +3,10 @@
         category: 'network-output',
         color: '#a6bbcf',
         defaults: {
-            name: {value:""},
             ipAddress: {value:"",required:true},
             password: {value:"",required:true},
+            retries: {value:1, validate:RED.validators.number()},
+            name: {value:""},
         },
         inputs:1,
         outputs:1,
@@ -18,21 +19,47 @@
 
 <script type="text/x-red" data-template-name="superhub2-reboot">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-    <div class="form-row">
-        <label for="node-input-ipAddress"><i class="icon-tag"></i> IP Address</label>
+        <label for="node-input-ipAddress"><i class="fa fa-dot-circle-o"></i> IP Address</label>
         <input type="text" id="node-input-ipAddress">
     </div>
     <div class="form-row">
-        <label for="node-input-password"><i class="icon-tag"></i> Password</label>
+        <label for="node-input-password"><i class="fa fa-lock"></i> Password</label>
         <input type="password" id="node-input-password">
+    </div>
+    <div class="form-row">
+        <label for="node-input-retries"><i class="fa fa-repeat"></i> Retries</label>
+        <input type="text" id="node-input-retries" placeholder="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="superhub2-reboot">
-    <p>When this node receives the message payload of true or a number above 0, it will initiate a reboot of the Virgin Media (tm) SuperHub2 router.</p>
-    <p>If it receives a message payload of "test" it will run all functions, up to, but not including the actual reboot. This this will test that the IP address and password are correct.</p>
-    <p>After triggering, on success it will output a message with payload of true, otherwise it will output a message with payload of false.</p>
+    <p>Reboots a Virgin Media (tm) SuperHub2</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">boolean | number | string</span>
+        </dt>
+        <dd>
+            A <code>true</code> boolean or a number above <code>0</code> will trigger reboot. A string == <code>test</code> will trigger a test run.
+        </dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <ol class="node-ports">
+        <li>Reboot status
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">boolean</span></dt>
+                <dd>true on success, false if failed for all retries.</dd>
+                <dt>type <span class="property-type">string</span></dt>
+                <dd>gives type of reboot <code>test</code> or <code>reboot</code>, depending on trigger.</dd>
+            </dl>
+        </li>
+    </ol>
+    <h3>Details</h3>
+    <p>A test run includes all functions up to, but not including the actual reboot. This will test that the IP address and password are correct.</p>
+    <p>Set number of retry attempts to try to run the process again on fail. There is a bug with trying to log in after the SuperHub has been idle a while that prevents the password login working. I retry of at least 1 is recommended.</p>
 </script>
