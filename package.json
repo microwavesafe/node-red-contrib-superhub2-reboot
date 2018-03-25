@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-superhub2-reboot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "When activated this will reboot a virgin media super hub 2",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
