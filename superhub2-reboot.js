@@ -12,8 +12,12 @@ module.exports = function(RED) {
     function SuperHub2RebootNode(config) {
         RED.nodes.createNode(this, config);
         this.baseAddress = "http://" + config.ipAddress;
-        this.password = config.password;
         this.retries = config.retries;
+
+        let credentials = this.credentials;
+        if (credentials) {
+            this.password = credentials.password;
+        }
         let node = this;
         node.retryCount = 0;
 
@@ -115,5 +119,9 @@ module.exports = function(RED) {
         });
     }
 
-    RED.nodes.registerType("superhub2-reboot",SuperHub2RebootNode);
+    RED.nodes.registerType("superhub2-reboot",SuperHub2RebootNode,{
+        credentials: {
+            password: {type: "password"}
+        }
+    });
 }

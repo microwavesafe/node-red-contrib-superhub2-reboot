@@ -4,9 +4,11 @@
         color: '#a6bbcf',
         defaults: {
             ipAddress: {value:"",required:true},
-            password: {value:"",required:true},
             retries: {value:1, validate:RED.validators.number()},
             name: {value:""},
+        },
+        credentials: {
+            password: {type:"password"}
         },
         inputs:1,
         outputs:1,
