@@ -3,3 +3,7 @@ This will only work with node red, see https://nodered.org/ for details.
 You can install directly from github
 
 npm install https://github.com/microwavesafe/node-red-contrib-superhub2-reboot.git
+
+This node will reboot a Virgin Media (tm) SuperHub2. I find mine gets locked up once in a while, usually when I've gone out and can't reboot it locally.
+
+As the hub has no API I've used web scraping to login and trigger the reboot.
