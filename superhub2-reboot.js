@@ -32,6 +32,7 @@ module.exports = function(RED) {
             .then(_getRebootPage)
             .then(response => _getRebootFormName(response))
              // next post to cgi reboot form
+            .then(_postRebootForm)
             .then(() => {
                 node.send({ payload: true, type: TYPE_REBOOT });
             })
